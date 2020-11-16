@@ -1,8 +1,10 @@
-import Planes.ExperimentalPlane;
-import models.MilitaryType;
-import Planes.MilitaryPlane;
-import Planes.PassengerPlane;
-import Planes.Plane;
+package model.airport;
+
+import model.planes.ExperimentalPlane;
+import model.type.MilitaryType;
+import model.planes.MilitaryPlane;
+import model.planes.PassengerPlane;
+import model.planes.Plane;
 
 import java.util.*;
 
@@ -100,7 +102,7 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport{" +
+        return "model.airport.Airport{" +
                 "Planes=" + planes.toString() +
                 '}';
     }
