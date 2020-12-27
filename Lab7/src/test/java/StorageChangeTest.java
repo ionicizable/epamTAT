@@ -16,7 +16,6 @@ public class StorageChangeTest {
         System.setProperty("webdriver.gecko.driver","E:\\programms\\webdrivers\\geckodriver.exe");
         WebDriver webDriver = new FirefoxDriver();
         JavascriptExecutor executor = (JavascriptExecutor) webDriver;
-
         webDriver.get("https://motorland.by/");
         WebElement oldCity = (new WebDriverWait(webDriver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.className("custom-select__gap")));
@@ -28,4 +27,6 @@ public class StorageChangeTest {
         webDriver.quit();
         Assert.assertEquals(expected,actual);
     }
+
+
 }
