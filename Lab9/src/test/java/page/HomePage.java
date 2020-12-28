@@ -16,6 +16,9 @@ public class HomePage extends AbstractPage {
         super(driver);
     }
 
+    @FindBy(xpath = "//p[text()='Вход / Регистрация']")
+    private WebElement loginButton;
+
     @FindBy(className = "custom-select__gap")
     private WebElement oldCity;
 
@@ -25,6 +28,12 @@ public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//span[text()='Марка автомобиля']")
     private WebElement carBrand;
+
+    public AccountPage openLoginPage(){
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(loginButton))
+                .click();
+        return new AccountPage(driver);
+    }
 
     public HomePage chooseCarBrand(){
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(carBrand));
@@ -48,6 +57,7 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage chooseCarPart(){
+        CustomWaits.waitForPageLoaded(driver);
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='select2-Filter_VikiPartId-container']")));
         WebElement part = driver.findElement(By.xpath("//span[@id='select2-Filter_VikiPartId-container']"));
         part.click();
@@ -58,6 +68,7 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage submitSearch(){
+        CustomWaits.waitForPageLoaded(driver);
         WebElement searchButton = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.id("button-searh")));
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();

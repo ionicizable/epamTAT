@@ -3,21 +3,21 @@ package model;
 import java.util.Objects;
 
 public class User {
-    private String email;
+    private Integer phoneNumber;
     private String password;
 
 
-    public User(String email, String password) {
-        this.email = email;
+    public User(Integer phoneNumber, String password) {
+        this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
@@ -31,7 +31,7 @@ public class User {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("username='").append(email).append('\'');
+        sb.append("username='").append(phoneNumber).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append('}');
         return sb.toString();
@@ -42,12 +42,12 @@ public class User {
         if (this == object) return true;
         if (!(object instanceof User)) return false;
         User user = (User) object;
-        return Objects.equals(getEmail(), user.getEmail()) &&
+        return Objects.equals(getPhoneNumber(), user.getPhoneNumber()) &&
                 Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getPassword());
+        return Objects.hash(getPhoneNumber(), getPassword());
     }
 }

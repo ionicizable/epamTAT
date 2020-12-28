@@ -1,16 +1,14 @@
 package test;
 
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
+import model.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.HomePage;
 import page.PartPage;
 
-public class ChangeCityAndSearchPartTests extends CommonConditions {
+public class ChangeCityAndSearchPartTest extends CommonConditions {
 
     @Test
     public void changeCityTest() {
@@ -23,6 +21,17 @@ public class ChangeCityAndSearchPartTests extends CommonConditions {
         homePage.openCitiesList();
         homePage.clickNewCity(newCity);
         Assert.assertEquals(newCity, homePage.getOldCity());
+    }
+
+    @Test
+    public void loginTest() {
+        final String HOME_PAGE_URL = "https://motorland.by/";
+        User user = new User(256223828, "Motorland201");
+        String actual = new HomePage(driver)
+            .openPage(HOME_PAGE_URL)
+            .openLoginPage()
+            .login(user).checkLoginStatus();
+        Assert.assertEquals(actual, "Мой кабинет");
     }
 
     @Test
