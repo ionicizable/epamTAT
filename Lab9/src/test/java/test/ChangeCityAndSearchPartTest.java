@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.HomePage;
 import page.PartPage;
+import service.UserCreator;
 
 public class ChangeCityAndSearchPartTest extends CommonConditions {
 
@@ -26,7 +27,7 @@ public class ChangeCityAndSearchPartTest extends CommonConditions {
     @Test
     public void loginTest() {
         final String HOME_PAGE_URL = "https://motorland.by/";
-        User user = new User(256223828, "Motorland201");
+        User user = UserCreator.createUserFromProperties();
         String actual = new HomePage(driver)
             .openPage(HOME_PAGE_URL)
             .openLoginPage()
@@ -45,7 +46,6 @@ public class ChangeCityAndSearchPartTest extends CommonConditions {
                 .chooseCarPart()
                 .submitSearch();
         String actual = new PartPage(driver).getPartInfo();
-        System.out.println(actual);
         Assert.assertEquals("Амортизатор подвескиAcura\n" +
                 "MDX 2001-2006", actual);
     }
@@ -53,7 +53,7 @@ public class ChangeCityAndSearchPartTest extends CommonConditions {
     @Test
     public void addToFavoritesTest() {
         final String HOME_PAGE_URL = "https://motorland.by/";
-        User user = new User(256223828, "Motorland201");
+        User user = UserCreator.createUserFromProperties();
         Boolean addedToFavorites = new HomePage(driver)
                 .openPage(HOME_PAGE_URL)
                 .openLoginPage()

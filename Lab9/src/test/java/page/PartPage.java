@@ -34,12 +34,14 @@ public class PartPage extends AbstractPage {
         CustomWaits.waitForPageLoaded(driver);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(favButton)).click();
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='popup-favorites popup-favorites-submited']")));
+        logger.info("Added to favorites");
         return Boolean.TRUE;
     }
 
     public void removefromFavorites(){
         CustomWaits.waitForPageLoaded(driver);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='favorites-new-icon-submited']"))).click();
+        logger.info("Removed from favorites");
     }
 
 

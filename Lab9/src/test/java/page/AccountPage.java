@@ -1,6 +1,8 @@
 package page;
 
 import model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +16,7 @@ import wait.CustomWaits;
 import javax.swing.*;
 
 public class AccountPage extends AbstractPage {
+
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -31,9 +34,12 @@ public class AccountPage extends AbstractPage {
 
     public AccountPage login(User user) {
         CustomWaits.waitForPageLoaded(driver);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.elementToBeClickable(phoneNumber));
         phoneNumber.sendKeys(user.getPhoneNumber() + "");
         password.sendKeys(user.getPassword());
         loginButton.click();
+        logger.info("Logged in");
         return this;
     }
 
@@ -57,6 +63,7 @@ public class AccountPage extends AbstractPage {
     public AccountPage openPage(String url) {
         driver.get(url);
         CustomWaits.waitForPageLoaded(driver);
+        logger.info("Opened AccountPage");
         return this;
     }
 }

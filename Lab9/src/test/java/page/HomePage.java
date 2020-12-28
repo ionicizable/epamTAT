@@ -1,5 +1,7 @@
 package page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -72,6 +74,7 @@ public class HomePage extends AbstractPage {
         WebElement searchButton = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.id("button-searh")));
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();
+        logger.info("Searching for part");
         return new PartPage(driver);
     }
 
@@ -95,6 +98,7 @@ public class HomePage extends AbstractPage {
     public HomePage openPage(String url) {
         driver.get(url);
         CustomWaits.waitForPageLoaded(driver);
+        logger.info("Opened HomePage");
         return this;
     }
 
