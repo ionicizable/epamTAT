@@ -38,7 +38,7 @@ public class ChangeCityAndSearchPartTest extends CommonConditions {
     public void searchPartTest() {
         final String HOME_PAGE_URL = "https://motorland.by/";
 
-        HomePage homePage = new HomePage(driver)
+        new HomePage(driver)
                 .openPage(HOME_PAGE_URL)
                 .chooseCarBrand()
                 .chooseCarModel()
@@ -48,6 +48,25 @@ public class ChangeCityAndSearchPartTest extends CommonConditions {
         System.out.println(actual);
         Assert.assertEquals("Амортизатор подвескиAcura\n" +
                 "MDX 2001-2006", actual);
+    }
+
+    @Test
+    public void addToFavoritesTest() {
+        final String HOME_PAGE_URL = "https://motorland.by/";
+        User user = new User(256223828, "Motorland201");
+        Boolean addedToFavorites = new HomePage(driver)
+                .openPage(HOME_PAGE_URL)
+                .openLoginPage()
+                .login(user)
+                .openHomePage()
+                .openPage(HOME_PAGE_URL)
+                .chooseCarBrand()
+                .chooseCarModel()
+                .chooseCarPart()
+                .submitSearch()
+                .addToFavorites();
+        new PartPage(driver).removefromFavorites();
+        Assert.assertTrue(addedToFavorites);
     }
 
 }

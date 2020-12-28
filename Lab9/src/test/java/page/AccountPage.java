@@ -46,6 +46,13 @@ public class AccountPage extends AbstractPage {
                 .presenceOfElementLocated(By.xpath("//a[@class='personal-account']/p"))).getText();
     }
 
+    public HomePage openHomePage() {
+        CustomWaits.waitForPageLoaded(driver);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='home']")));
+        return new HomePage(driver);
+    }
+
     @Override
     public AccountPage openPage(String url) {
         driver.get(url);

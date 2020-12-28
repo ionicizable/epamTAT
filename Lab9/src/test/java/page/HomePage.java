@@ -67,12 +67,12 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage submitSearch(){
+    public PartPage submitSearch(){
         CustomWaits.waitForPageLoaded(driver);
         WebElement searchButton = new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.id("button-searh")));
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();
-        return this;
+        return new PartPage(driver);
     }
 
     public HomePage openCitiesList(){
