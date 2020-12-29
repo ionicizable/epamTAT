@@ -38,10 +38,11 @@ public class PartPage extends AbstractPage {
         return Boolean.TRUE;
     }
 
-    public void removefromFavorites(){
+    public PartPage removefromFavorites(){
         CustomWaits.waitForPageLoaded(driver);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='favorites-new-icon-submited']"))).click();
         logger.info("Removed from favorites");
+        return this;
     }
 
 
