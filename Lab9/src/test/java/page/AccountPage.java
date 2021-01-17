@@ -17,6 +17,7 @@ import javax.swing.*;
 
 public class AccountPage extends AbstractPage {
 
+    private final static String ACCOUNT_PAGE_URL = "https://motorland.by/account/";
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -48,13 +49,10 @@ public class AccountPage extends AbstractPage {
 
 
 
-    public String checkLoginStatus() {
+    public String getAccountNumber() {
         CustomWaits.waitForPageLoaded(driver);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.textToBe(By.xpath("//a[@class='personal-account']/p"), "Мой кабинет"));
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//a[@class='personal-account']/p"))).getText();
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='account__cabinet']/p/b"))).getText();
     }
 
     public HomePage openHomePage() {
@@ -71,8 +69,8 @@ public class AccountPage extends AbstractPage {
     }
 
     @Override
-    public AccountPage openPage(String url) {
-        driver.get(url);
+    public AccountPage openPage() {
+        driver.get(this.ACCOUNT_PAGE_URL);
         CustomWaits.waitForPageLoaded(driver);
         logger.info("Opened AccountPage");
         return this;

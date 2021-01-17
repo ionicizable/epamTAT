@@ -14,11 +14,13 @@ import wait.CustomWaits;
 
 public class HomePage extends AbstractPage {
 
+    private final String HOME_PAGE_URL = "https://motorland.by/";
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//p[text()='Вход / Регистрация']")
+    @FindBy(xpath = "//a[@class='personal-account']")
     private WebElement loginButton;
 
     @FindBy(className = "custom-select__gap")
@@ -32,13 +34,13 @@ public class HomePage extends AbstractPage {
     private WebElement carBrand;
 
     public AccountPage openLoginPage(){
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(loginButton))
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(loginButton))
                 .click();
         return new AccountPage(driver);
     }
 
     public HomePage chooseCarBrand(){
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(carBrand));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(carBrand));
         carBrand.click();
         WebElement currentElement = driver.switchTo().activeElement();
         currentElement.sendKeys(Keys.ARROW_DOWN);
@@ -48,7 +50,7 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage chooseCarModel(){
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='select2-Filter_Model_VikiAutoModelId-container']")));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='select2-Filter_Model_VikiAutoModelId-container']")));
         WebElement model = driver.findElement(By.xpath("//span[@id='select2-Filter_Model_VikiAutoModelId-container']"));
         model.click();
         WebElement currentElement = driver.switchTo().activeElement();
@@ -60,7 +62,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage chooseCarPart(){
         CustomWaits.waitForPageLoaded(driver);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='select2-Filter_VikiPartId-container']")));
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='select2-Filter_VikiPartId-container']")));
         WebElement part = driver.findElement(By.xpath("//span[@id='select2-Filter_VikiPartId-container']"));
         part.click();
         WebElement currentElement = driver.switchTo().activeElement();
@@ -95,8 +97,8 @@ public class HomePage extends AbstractPage {
     }
 
     @Override
-    public HomePage openPage(String url) {
-        driver.get(url);
+    public HomePage openPage() {
+        driver.get(this.HOME_PAGE_URL);
         CustomWaits.waitForPageLoaded(driver);
         logger.info("Opened HomePage");
         return this;

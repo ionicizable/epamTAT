@@ -9,10 +9,8 @@ public class SearchPartTest extends CommonConditions{
 
     @Test
     public void searchPartTest() {
-        final String HOME_PAGE_URL = "https://motorland.by/";
-
         new HomePage(driver)
-                .openPage(HOME_PAGE_URL)
+                .openPage()
                 .chooseCarBrand()
                 .chooseCarModel()
                 .chooseCarPart()

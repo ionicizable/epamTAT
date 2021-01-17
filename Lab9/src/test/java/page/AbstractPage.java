@@ -17,5 +17,5 @@ public abstract class AbstractPage {
         PageFactory.initElements(new AjaxElementLocatorFactory(this.driver, WAIT_TIMEOUT_SECONDS), this);
     }
 
-    protected abstract AbstractPage openPage(String url);
+    protected abstract AbstractPage openPage();
 }

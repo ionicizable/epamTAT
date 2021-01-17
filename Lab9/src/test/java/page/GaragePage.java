@@ -12,6 +12,8 @@ import wait.CustomWaits;
 
 public class GaragePage extends AbstractPage {
 
+    private final static String GARAGE_PAGE_URL = "https://motorland.by/account/";
+
     public GaragePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -59,8 +61,8 @@ public class GaragePage extends AbstractPage {
     }
 
     @Override
-    public GaragePage openPage(String url) {
-        driver.get(url);
+    public GaragePage openPage() {
+        driver.get(this.GARAGE_PAGE_URL);
         CustomWaits.waitForPageLoaded(driver);
         logger.info("Opened AccountPage");
         return this;

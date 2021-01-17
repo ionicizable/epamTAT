@@ -12,6 +12,8 @@ import wait.CustomWaits;
 
 public class PartPage extends AbstractPage {
 
+    private final static String PART_PAGE_URL = "https://motorland.by/account/";
+
     public PartPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
@@ -48,8 +50,8 @@ public class PartPage extends AbstractPage {
 
 
     @Override
-    public PartPage openPage(String url) {
-        driver.get(url);
+    public PartPage openPage() {
+        driver.get(this.PART_PAGE_URL);
         CustomWaits.waitForPageLoaded(driver);
         return this;
     }

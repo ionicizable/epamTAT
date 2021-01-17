@@ -12,11 +12,9 @@ import util.TestListener;
 public class CommonConditions {
     protected WebDriver driver;
 
-
     @BeforeMethod()
-    public void setUp()
-    {
-        driver = DriverManager.getDriver();
+    public void setUp(){
+       driver = DriverManager.getDriver();
     }
 
     @AfterMethod(alwaysRun = true)

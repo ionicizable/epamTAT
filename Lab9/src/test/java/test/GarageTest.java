@@ -11,10 +11,9 @@ public class GarageTest extends CommonConditions {
 
     @Test
     public void GarageTest() {
-        final String HOME_PAGE_URL = "https://motorland.by/";
         User user = UserCreator.createUserFromProperties();
         String actual = new HomePage(driver)
-            .openPage(HOME_PAGE_URL)
+            .openPage()
             .openLoginPage()
             .login(user)
                 .openGaragePage()
